@@ -17,7 +17,7 @@ BUILDPACK_PACKAGE="${VENDOR_URL}/${FILE_NAME}"
 mkdir -p $CACHE_DIR
 if ! [ -e $CACHE_DIR/$FILE_NAME ]; then
   echo "----> Fetching Poppler buildpack binaries"
-  curl BUILDPACK_PACKAGE -s -o $CACHE_DIR/$FILE_NAME
+  curl $BUILDPACK_PACKAGE -s -o $CACHE_DIR/$FILE_NAME
 fi
 
 echo "----> Extracting Poppler binaries"
