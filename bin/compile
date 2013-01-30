@@ -7,10 +7,10 @@ CACHE_DIR=$2
 
 # config
 S3_BUCKET_NAME="baucloud-heroku-buildpack"
-VERSION="0.22.0"
-
-# s3 packages
 VENDOR_URL="https://s3.amazonaws.com/${S3_BUCKET_NAME}"
+
+# Poppler
+VERSION="0.22.0"
 FILE_NAME="poppler-${VERSION}.tgz"
 BUILDPACK_PACKAGE="${VENDOR_URL}/${FILE_NAME}"
 
