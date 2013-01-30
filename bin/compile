@@ -9,6 +9,21 @@ CACHE_DIR=$2
 S3_BUCKET_NAME="baucloud-heroku-buildpack"
 VENDOR_URL="https://s3.amazonaws.com/${S3_BUCKET_NAME}"
 
+# Fontconfig
+VERSION="2.10.2"
+FILE_NAME="fontconfig-${VERSION}.tgz"
+BUILDPACK_PACKAGE="${VENDOR_URL}/${FILE_NAME}"
+
+mkdir -p $CACHE_DIR
+if ! [ -e $CACHE_DIR/$FILE_NAME ]; then
+  echo "----> Fetching Fontconfig buildpack binaries"
+  curl $BUILDPACK_PACKAGE -s -o $CACHE_DIR/$FILE_NAME
+fi
+
+echo "----> Extracting Fontconfig binaries"
+mkdir -p $BUILD_DIR/vendor/fontconfig
+tar zxf $CACHE_DIR/$FILE_NAME -C $BUILD_DIR/vendor/fontconfig
+
 # Poppler
 VERSION="0.22.0"
 FILE_NAME="poppler-${VERSION}.tgz"
