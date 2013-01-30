@@ -6,13 +6,13 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 
 # config
-S3_BUCKET_NAME    = "baucloud-heroku-buildpack"
-VERSION           = "0.22.0"
+S3_BUCKET_NAME="baucloud-heroku-buildpack"
+VERSION="0.22.0"
 
 # s3 packages
-VENDOR_URL        = "https://s3.amazonaws.com/${S3_BUCKET_NAME}"
-FILE_NAME         = "poppler-${VERSION}.tgz"
-BUILDPACK_PACKAGE = "${VENDOR_URL}/${FILE_NAME}"
+VENDOR_URL="https://s3.amazonaws.com/${S3_BUCKET_NAME}"
+FILE_NAME="poppler-${VERSION}.tgz"
+BUILDPACK_PACKAGE="${VENDOR_URL}/${FILE_NAME}"
 
 mkdir -p $CACHE_DIR
 if ! [ -e $CACHE_DIR/$FILE_NAME ]; then
