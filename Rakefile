@@ -13,7 +13,7 @@ end
 desc "install Fontconfig"
 task "fontconfig:build", :version do |t, args|
   version = args[:version]
-  name    = "fontconfig-#{version}"
+  name    = "fontconfig"
   prefix  = "/app/vendor/#{name}"
 
   build_command = [
@@ -22,9 +22,9 @@ task "fontconfig:build", :version do |t, args|
     "make install",
   ].join(" && ")
 
-  sh "vulcan build -v -o #{name}.tgz --source #{name} --prefix=#{prefix} --command=\"#{build_command}\""
+  sh "vulcan build -v -o #{name}-#{version}.tgz --source #{name}-#{version} --prefix=#{prefix} --command=\"#{build_command}\""
 
-  puts "Vulcan is done with #{name}. Upload now #{name}.tgz to Amazon S3."
+  puts "Vulcan is done with #{name}. Upload now #{name}-#{version}.tgz to Amazon S3."
   puts "Set the environment variable FONTCONFIG_PACKAGE_TGZ to the online location of fontconfig."
 end
 
@@ -38,7 +38,7 @@ end
 desc "install Poppler"
 task "poppler:build", :version do |t, args|
   version = args[:version]
-  name    = "poppler-#{version}"
+  name    = "poppler"
   prefix  = "/app/vendor/#{name}"
 
   build_command = [
@@ -47,7 +47,7 @@ task "poppler:build", :version do |t, args|
     "make install",
   ].join(" && ")
 
-  sh "vulcan build -v -d #{ENV['FONTCONFIG_PACKAGE_TGZ']} -o #{name}.tgz --source #{name} --prefix=#{prefix} --command=\"#{build_command}\""
+  sh "vulcan build -v -d #{ENV['FONTCONFIG_PACKAGE_TGZ']} -o #{name}-#{version}.tgz --source #{name}-#{version} --prefix=#{prefix} --command=\"#{build_command}\""
 
-  puts "Vulcan is done with #{name}. Upload now #{name}.tgz to Amazon S3."
+  puts "Vulcan is done with #{name}. Upload now #{name}-#{version}.tgz to Amazon S3."
 end
