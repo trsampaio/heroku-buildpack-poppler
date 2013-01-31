@@ -43,7 +43,7 @@ task "poppler:build", :version do |t, args|
 
   build_command = [
     "./configure --disable-static --enable-zlib --prefix=#{prefix}",
-    #"make",
+    "make",
     "make install",
   ].join(" && ")
 
