@@ -38,3 +38,7 @@ fi
 echo "----> Extracting Poppler binaries"
 mkdir -p $BUILD_DIR/vendor/poppler
 tar zxf $CACHE_DIR/$FILE_NAME -C $BUILD_DIR/vendor/poppler
+
+
+echo "----> Linking binaries"
+ln -s $BUILD_DIR/vendor/poppler/bin/* $BUILD_DIR/bin/
