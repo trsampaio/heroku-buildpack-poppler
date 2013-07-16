@@ -16,11 +16,11 @@ BUILDPACK_PACKAGE="${VENDOR_URL}/${FILE_NAME}"
 
 mkdir -p $CACHE_DIR
 if ! [ -e $CACHE_DIR/$FILE_NAME ]; then
-  echo "----> Fetching Fontconfig buildpack binaries"
+  echo "-----> Fetching Fontconfig buildpack binaries"
   curl $BUILDPACK_PACKAGE -s -o $CACHE_DIR/$FILE_NAME
 fi
 
-echo "----> Extracting Fontconfig binaries"
+echo "-----> Extracting Fontconfig binaries"
 mkdir -p $BUILD_DIR/vendor/fontconfig
 tar zxf $CACHE_DIR/$FILE_NAME -C $BUILD_DIR/vendor/fontconfig
 
@@ -31,14 +31,14 @@ BUILDPACK_PACKAGE="${VENDOR_URL}/${FILE_NAME}"
 
 mkdir -p $CACHE_DIR
 if ! [ -e $CACHE_DIR/$FILE_NAME ]; then
-  echo "----> Fetching Poppler buildpack binaries"
+  echo "-----> Fetching Poppler buildpack binaries"
   curl $BUILDPACK_PACKAGE -s -o $CACHE_DIR/$FILE_NAME
 fi
 
-echo "----> Extracting Poppler binaries"
+echo "-----> Extracting Poppler binaries"
 mkdir -p $BUILD_DIR/vendor/poppler
 tar zxf $CACHE_DIR/$FILE_NAME -C $BUILD_DIR/vendor/poppler
 
 
-echo "----> Linking binaries"
+echo "-----> Linking binaries"
 ln -s vendor/poppler/bin/* bin/
