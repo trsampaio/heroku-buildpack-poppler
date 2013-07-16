@@ -41,4 +41,5 @@ tar zxf $CACHE_DIR/$FILE_NAME -C $BUILD_DIR/vendor/poppler
 
 echo "-----> Linking binaries"
 mkdir -p $BUILD_DIR/bin
-ln -s ../vendor/poppler/bin/* $BUILD_DIR/bin/
+cd $BUILD_DIR/bin
+ln -s ../vendor/poppler/bin/* .
