@@ -6,7 +6,7 @@ FONTCONFIG_PACKAGE_TGZ = ENV['FONTCONFIG_PACKAGE_TGZ']
 desc "download Fontconfig"
 task "fontconfig:download", :version do |t, args|
   version = args[:version]
-
+  echo version
   sh "curl http://www.freedesktop.org/software/fontconfig/release/fontconfig-#{version}.tar.gz -s -o - | tar vzxf -"
 end
 
@@ -19,13 +19,8 @@ task "fontconfig:build", :version do |t, args|
   build_command = [
     "./configure --disable-static --disable-docs --prefix=#{prefix}",
     "make",
-    "make install"
   ].join(" && ")
-
-  sh "vulcan build -v -o #{name}-#{version}.tgz --source #{name}-#{version} --prefix=#{prefix} --command=\"#{build_command}\""
-
-  puts "Vulcan is done with #{name}. Upload now #{name}-#{version}.tgz to Amazon S3."
-  puts "Set the environment variable FONTCONFIG_PACKAGE_TGZ to the online location of fontconfig."
+  sh build_command
 end
 
 desc "download Poppler"
@@ -40,14 +35,11 @@ task "poppler:build", :version do |t, args|
   version = args[:version]
   name    = "poppler"
   prefix  = "/app/vendor/#{name}"
-
+  echo version
   build_command = [
     "./configure --disable-static --enable-zlib --prefix=#{prefix}",
     "make",
-    "make install",
   ].join(" && ")
 
-  sh "vulcan build -v -d #{ENV['FONTCONFIG_PACKAGE_TGZ']} -o #{name}-#{version}.tgz --source #{name}-#{version} --prefix=#{prefix} --command=\"#{build_command}\""
-
-  puts "Vulcan is done with #{name}. Upload now #{name}-#{version}.tgz to Amazon S3."
+  sh build_command
 end
