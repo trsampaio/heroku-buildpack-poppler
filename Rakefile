@@ -20,6 +20,8 @@ task "fontconfig:build", :version do |t, args|
     "./configure --disable-static --disable-docs --prefix=#{prefix}",
     "make",
     "make install",
+    "FONTCONFIG_LIBS=\"-L/app/fontconfig-2.10.91/src/.libs/ -lfontconfig\"",
+    "FONTCONFIG_CFLAGS=\"-I/app/fontconfig-2.10.91/\""
   ].join(" && ")
 
   sh "vulcan build -v -o #{name}-#{version}.tgz --source #{name}-#{version} --prefix=#{prefix} --command=\"#{build_command}\""
