@@ -19,9 +19,7 @@ task "fontconfig:build", :version do |t, args|
   build_command = [
     "./configure --disable-static --disable-docs --prefix=#{prefix}",
     "make",
-    "make install",
-    "FONTCONFIG_LIBS=\"-L/app/fontconfig-2.10.91/src/.libs/ -lfontconfig\"",
-    "FONTCONFIG_CFLAGS=\"-I/app/fontconfig-2.10.91/\""
+    "make install"
   ].join(" && ")
 
   sh "vulcan build -v -o #{name}-#{version}.tgz --source #{name}-#{version} --prefix=#{prefix} --command=\"#{build_command}\""
@@ -34,7 +32,7 @@ desc "download Poppler"
 task "poppler:download", :version do |t, args|
   version = args[:version]
 
-  sh "curl http://poppler.freedesktop.org/poppler-#{version}.tar.gz -s -o - | tar vzxf -"
+  sh "curl http://poppler.freedesktop.org/poppler-#{version}.tar.gz -s -o - | tar vxf -"
 end
 
 desc "install Poppler"
